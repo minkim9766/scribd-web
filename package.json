@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node run.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start:next": "next start",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
@@ -17,13 +20,19 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@sparticuz/chromium": "^123.0.0",
     "axios": "^1.6.8",
     "cli-progress": "^3.12.0",
     "ini": "^4.1.2",
+    "next": "^14.0.0",
     "pdf-lib": "^1.17.1",
     "puppeteer": "^19.11.1",
+    "puppeteer-core": "^22.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "sanitize-filename": "^1.6.3",
-    "sharp": "^0.33.3"
+    "sharp": "^0.33.3",
+    "uuid": "^9.0.0"
   },
   "type": "module",
   "types": "module",
