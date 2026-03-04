@@ -26,3 +26,7 @@ export default function handler(req, res) {
     elapsedTime: job.elapsedTime,
   });
 }
+
+export const config = {
+  maxDuration: 60,
+};
