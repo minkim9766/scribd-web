@@ -263,7 +263,7 @@ async function downloadSlideshare(job, url) {
       const imagePath = path.join(tempDir, `${String(i + 1).padStart(5, '0')}.png`);
       const resp = await axios.get(srcs[i], { responseType: 'arraybuffer', timeout: 30000 });
       const imageBuffer = await sharp(resp.data).toFormat('png').toBuffer();
-      fs.writeFileSync(imagePath, imageBuffer);
+      await fsp.writeFile(imagePath, imageBuffer);
       const metadata = await sharp(imagePath).metadata();
       images.push(new Image(imagePath, metadata.width, metadata.height));
 
@@ -330,7 +330,7 @@ async function downloadEverand(job, url) {
     job.progress = 20;
 
     const title = await page.evaluate(() => {
-      try { return eval('Scribd.current_doc.short_title'); } catch { return null; }
+      try { return window.Scribd?.current_doc?.short_title ?? null; } catch { return null; }
     });
 
     const audioUrl = await page.evaluate(() => {
@@ -360,7 +360,7 @@ async function downloadEverand(job, url) {
         }
       },
     });
-    fs.writeFileSync(mp3Path, Buffer.from(resp.data));
+    await fsp.writeFile(mp3Path, Buffer.from(resp.data));
 
     job.filePath = mp3Path;
     job.filename = `${identifier}.mp3`;

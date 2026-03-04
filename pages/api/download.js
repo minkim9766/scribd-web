@@ -67,7 +67,7 @@ export default async function handler(req, res) {
     }
 
     try {
-      const fileBuffer = fs.readFileSync(job.filePath);
+      const fileBuffer = await fs.promises.readFile(job.filePath);
       res.setHeader('Content-Disposition', `attachment; filename="${job.filename}"`);
       res.setHeader('Content-Type', 'application/octet-stream');
       res.setHeader('Content-Length', fileBuffer.length);

@@ -136,3 +136,5 @@ node_modules/
 # Next.js
 .next/
 out/
+# Allow src/lib despite the lib/ rule above
+!src/lib/
